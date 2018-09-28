@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import cadastro from './components/cadastro.vue'
 import DetalhePedido from './components/detalhesPedido'
+import Relatorio from './components/Relatorio'
 
 Vue.use(Router)
 
@@ -32,6 +33,11 @@ export default new Router({
       path: '/detalhePedido',
       name: 'DetalhePedido',
       component: DetalhePedido
-    }
+    },
+    {
+      path: '/',
+      name: 'home',
+      component: Relatorio
+    },
   ]
 })
