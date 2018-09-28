@@ -2,7 +2,7 @@
     <div>
         <b-table :fields="fields" :items="items" >
             <template slot="detalhes" slot-scope="data">
-                <b-button size="sm" :to="'/detalhePedido:' + items[data.index]['.key']">Detalhes</b-button>
+                <b-button size="sm" :to="{ name:'detalhesPedido', params: { hkey: items[data.index]['.key'] } }">Detalhes</b-button>
             </template>
         </b-table>
     </div>

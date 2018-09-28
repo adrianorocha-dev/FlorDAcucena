@@ -22,13 +22,13 @@ export default new Router({
       component: cadastro
     },
     {
-      path: '/detalhePedido',
-      name: 'DetalhePedido',
+      path: '/detalhesPedido/:hkey',
+      name: 'detalhesPedido',
       component: DetalhePedido
     },
     {
-      path: '/Relatorio',
-      name: 'Relatório',
+      path: '/relatorio',
+      name: 'Relatorio',
       component: Relatorio
     },
   ]

@@ -93,7 +93,8 @@ export default {
                 cliente: this.nomeCliente,
                 descricao: this.descricao,
                 dataEntrega: this.dataEntrega,
-                tempoProducao: this.tempoProducao
+                tempoProducao: this.tempoProducao,
+                listaMateriais: []
             })
         }
     }
