@@ -1,6 +1,6 @@
 <template>
     <b-container>
-        <b-col md="8" offset-md="2">
+        <b-col md="8" offset-md="2" sm="12" offset-sm="0">
             <b-form>
                 <b-form-group id="nomeDoPedido"
                         label="Pedido:"
@@ -9,7 +9,8 @@
                     <b-form-input id="PedidoInput"
                             type="text"
                             required
-                            placeholder="">
+                            v-model="nomePedido"
+                            placeholder="Um nome para identificar o pedido">
                     </b-form-input>
                 </b-form-group>
 
@@ -20,7 +21,8 @@
                     <b-form-input id="nomeClienteInput2"
                         type="text"
                         required
-                        placeholder="">
+                        v-model="nomeCliente"
+                        placeholder="Nome do cliente">
                     </b-form-input>
                 </b-form-group>
 
@@ -30,8 +32,8 @@
                         horizontal>
                     
                     <b-form-textarea id="textarea1"
-                        placeholder=""
-                        v-model="text"
+                        placeholder="Uma descrição sobre o que o cliente deseja..."
+                        v-model="descricao"
                         rows="3"
                         max-rows="3">
                     </b-form-textarea>
@@ -42,8 +44,9 @@
                         label-for="entregaInput4"
                         horizontal>
             <b-form-input id="entregaInput4"
-                        type="text"
+                        type="date"
                         required
+                        v-model="dataEntrega"
                         placeholder="">
             </b-form-input>
         </b-form-group>
@@ -53,17 +56,16 @@
                         label-for="tempoProducaoInput2"
                         horizontal>
             <b-form-input id="tempoProducaoInput2"
-                        type="text"
+                        type="number"
                         required
-                        placeholder="">
+                        v-model="tempoProducao"
+                        placeholder="0">
             </b-form-input>
 
 
         </b-form-group>
 
-            <b-button size="lg" variant="primary" >Cadastrar</b-button>
-            
-
+            <b-button size="lg" variant="primary" @click="submitPedido()">Cadastrar</b-button>
 
         </b-form>
         </b-col>
@@ -71,11 +73,28 @@
 </template>
 
 <script>
+import {pedidosRef} from '../firebase'
+
 export default {
     name: 'cadastro',
     data() {
         return {
-            text: ""
+            nomePedido: '',
+            nomeCliente: '',
+            descricao: '',
+            dataEntrega: '',
+            tempoProducao: 0
+        }
+    },
+    methods: {
+        submitPedido() {
+            pedidosRef.push({
+                nomePedido: this.nomePedido,
+                cliente: this.nomeCliente,
+                descricao: this.descricao,
+                dataEntrega: this.dataEntrega,
+                tempoProducao: this.tempoProducao
+            })
         }
     }
 }
