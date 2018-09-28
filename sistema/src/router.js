@@ -35,8 +35,8 @@ export default new Router({
       component: DetalhePedido
     },
     {
-      path: '/',
-      name: 'home',
+      path: '/Relatorio',
+      name: 'Relatório',
       component: Relatorio
     },
   ]
