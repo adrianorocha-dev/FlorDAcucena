@@ -5,10 +5,13 @@ import store from './store'
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import './firebase'
+import VueFire from 'vuefire'
 
 Vue.config.productionTip = false
 
 Vue.use(BootstrapVue)
+Vue.use(VueFire)
 
 new Vue({
   router,
