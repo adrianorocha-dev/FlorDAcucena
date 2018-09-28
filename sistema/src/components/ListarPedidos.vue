@@ -1,8 +1,8 @@
 <template>
     <div>
         <b-table :fields="fields" :items="items" >
-            <template slot="index" slot-scope="data">
-                {{data.index + 1}}
+            <template slot="detalhes" slot-scope="data">
+                <b-button size="sm" :to="'/detalhePedido:' + items[data.index]['.key']">Detalhes</b-button>
             </template>
         </b-table>
     </div>
@@ -10,21 +10,25 @@
 </template>
 
 <script>
+import {pedidosRef} from '../firebase'
+
+
 export default {
     name: 'ListarPedidos',
     data(){
         return{
             fields: [
-                'index',
-                'pedido',
+                { key: 'nomePedido', label: 'Pedido' },
                 'cliente',
-                { key: 'dataentrega', label: 'Data de Entrega' }
-            ],
-            items: [
-                { pedido: 'teste', cliente: 'teste', dataentrega: 'teste' },
-                { pedido: 'teste2', cliente: 'teste2', dataentrega: 'teste'}
+                'descricao',
+                { key: 'dataEntrega', label: 'Data de Entrega' },
+                { key: 'tempoProducao', label: 'Tempo de Produção' },
+                'detalhes'
             ]
         }
+    },
+    firebase:{
+        items: pedidosRef
     }
 }
 </script>
