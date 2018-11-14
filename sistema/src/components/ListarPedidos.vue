@@ -20,7 +20,7 @@ export default {
             fields: [
                 { key: 'nomePedido', label: 'Pedido' },
                 'cliente',
-                'descricao',
+                'Descricao',
                 { key: 'dataEntrega', label: 'Data de Entrega' },
                 { key: 'tempoProducao', label: 'Tempo de Produção' },
                 'detalhes'
@@ -33,8 +33,3 @@ export default {
 }
 </script>
 
-<style>
-body{
-background-color: #fbbebe;
-}
-</style>

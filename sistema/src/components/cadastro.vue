@@ -1,9 +1,9 @@
-<template>
+<template id="teste">
     <b-container>
         <b-col md="8" offset-md="2" sm="12" offset-sm="0">
             <b-form>
                 <b-form-group id="nomeDoPedido"
-                        label="Pedido:"
+                        label="Nome do Pedido:"
                         label-for="PedidoInput"
                         horizontal>
                     <b-form-input id="PedidoInput"
@@ -65,7 +65,20 @@
 
         </b-form-group>
 
-            <b-button size="lg" variant="primary" @click="submitPedido()">Cadastrar</b-button>
+	<b-form-group id="materiais"
+                        label="Materiais:"
+                        label-for="exampleInput3"
+                        horizontal>
+                    
+                    <b-form-textarea id="textarea1"
+                        placeholder="Lista de Materiais"
+                        v-model="materiais"
+                        rows="3"
+                        max-rows="3">
+                    </b-form-textarea>
+        </b-form-group>
+
+        <b-button size="lg" variant="primary" @click="submitPedido()">Cadastrar</b-button>
 
         </b-form>
         </b-col>
