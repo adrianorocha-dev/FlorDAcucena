@@ -81,7 +81,7 @@
                     </b-form-textarea>
         </b-form-group>
 
-        <b-button id="botaoCad" size="lg" variant="primary" @click="submitPedido()">Confirmar</b-button>
+        <b-button id="botaoCad" @click="submitPedido()">Confirmar</b-button>
 
         </b-form>
         </b-col>
@@ -118,18 +118,15 @@ export default {
 </script>
 
 <style>
-.btn-lg{
+
+#botaoCad{
+    font-weight: bold;
     padding: 0.5rem 19rem;
     font-size: 1.25rem;
     line-height: 1.5;
     border-radius: 25px;
-}
-.btn-primary{
     background-color: #d9779a;
     border-color: #d9779a;
-}
-.btn{
-    font-weight: bold;
 }
 
 .col-form-label{
