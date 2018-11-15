@@ -46,15 +46,18 @@ export default {
 #tabela {
     padding-left: 150px;
     padding-right: 150px;
+    font-weight: bold;
 }
 
 .table .thead-light th {
     color: white;
     background-color: #d9779a;
     border: 2px solid #c79bbf;
+    font-size: 1.25rem;
 }
 
 .table-bordered th, .table-bordered td {
     border: 2px solid #c79bbf;
 }
+
 </style>
