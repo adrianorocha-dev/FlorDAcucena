@@ -3,7 +3,7 @@
     <div id="nav">
       <router-link to="/">Home</router-link> 
       <router-link to ="/cadastroCliente">Cadastro de pedido</router-link>  
-      <router-link to ="/relatorio">Relatório</router-link> 
+      <router-link to ="/relatorio">Relatório Financeiro</router-link> 
       <router-link to="/about">Sobre</router-link>
     </div>
     <router-view/>

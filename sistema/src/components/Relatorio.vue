@@ -1,7 +1,12 @@
 <template>
+    <b-container id="contRel">
         <div id="tabela">
             <b-table :fields="fields" :items="items" bordered=true outlined="true" striped="true"></b-table>
+            <template>
+                <router-link id="linkGeraRel" to="/DadosRelatorio">Gerar Relatório Mensal</router-link>
+            </template>
         </div>
+    </b-container>
 </template>
 
 <script>
@@ -23,32 +28,21 @@ export default {
 </script>
 
 <style>
-.btn{
+#linkGeraRel{
     background-color: #d9779a;
     border-color: #d9779a;
-}
-.btn-sm{
-    padding: 2px 1rem;
+    padding: 5px 1rem;
     font-size: 1.25rem;
     line-height: 1.5;
     border-radius: 25px;
+    margin-top: 30px;
+    color: white;
 }
 
 #tabela {
-    padding-left: 150px;
-    padding-right: 150px;
+    margin-left: 50px;
+    margin-right: 50px;
     font-weight: bold;
-}
-
-.table .thead-light th {
-    color: white;
-    background-color: #d9779a;
-    border: 2px solid #c79bbf;
-    font-size: 1.25rem;
-}
-
-.table-bordered th, .table-bordered td {
-    border: 2px solid #c79bbf;
 }
 
 </style>

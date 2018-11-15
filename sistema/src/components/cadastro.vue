@@ -55,7 +55,7 @@
         </b-form-group>
 
             <b-form-group id="tempoDeProducao"
-                        label="Tempo mínimo de produção:"
+                        label="Tempo Mínimo de Produção:"
                         label-class="text-sm-left"
                         vertical>
             <b-form-input id="tempoProducaoInput2"
@@ -64,8 +64,18 @@
                         v-model="tempoProducao"
                         placeholder="0">
             </b-form-input>
+        </b-form-group>
 
-
+        <b-form-group id="valorProd"
+                        label="Valor Estimado de Produção:"
+                        label-class="text-sm-left"
+                        vertical>
+                    <b-form-input id="valorProdInput2"
+                        type="text"
+                        required
+                        v-model="valorProd"
+                        placeholder="Valor Estimado de Produção">
+                    </b-form-input>
         </b-form-group>
 
 	<b-form-group id="materiais"

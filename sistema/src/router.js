@@ -4,6 +4,7 @@ import cadastro from './components/cadastro.vue'
 import DetalhePedido from './components/detalhesPedido'
 import Relatorio from './components/Relatorio'
 import ListarPedidos from './components/ListarPedidos'
+import DadosRelatorio from './components/DadosRelatorio'
 
 Vue.use(Router)
 
@@ -30,6 +31,11 @@ export default new Router({
       path: '/relatorio',
       name: 'Relatorio',
       component: Relatorio
+    },
+    {
+      path: '/DadosRelatorio',
+      name: 'DadosRelatorio',
+      component: DadosRelatorio
     },
   ]
 })
