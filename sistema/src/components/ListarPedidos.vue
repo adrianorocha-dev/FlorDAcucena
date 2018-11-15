@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <b-table :fields="fields" :items="items" >
+    <div id="tabela">
+        <b-table :fields="fields" :items="items" bordered=true outlined="true" striped="true" head-variant="light">
             <template slot="detalhes" slot-scope="data">
                 <b-button size="sm" :to="{ name:'detalhesPedido', params: { hkey: items[data.index]['.key'] } }">Detalhes</b-button>
             </template>
@@ -20,9 +20,7 @@ export default {
             fields: [
                 { key: 'nomePedido', label: 'Pedido' },
                 'cliente',
-                'Descricao',
-                { key: 'dataEntrega', label: 'Data de Entrega' },
-                { key: 'tempoProducao', label: 'Tempo de Produção' },
+                { key: 'dataEntrega', label: 'Entrega' },
                 'detalhes'
             ]
         }
@@ -33,3 +31,30 @@ export default {
 }
 </script>
 
+<style>
+.btn{
+    background-color: #d9779a;
+    border-color: #d9779a;
+}
+.btn-sm{
+    padding: 2px 1rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    border-radius: 25px;
+}
+
+#tabela {
+    padding-left: 150px;
+    padding-right: 150px;
+}
+
+.table .thead-light th {
+    color: white;
+    background-color: #d9779a;
+    border: 2px solid #c79bbf;
+}
+
+.table-bordered th, .table-bordered td {
+    border: 2px solid #c79bbf;
+}
+</style>

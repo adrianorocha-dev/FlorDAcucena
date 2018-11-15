@@ -18,7 +18,7 @@
                                 max-rows="5">
                             </b-form-textarea>
                 </b-form-group>
-                <b-button size="sm" variant="success">Adicionar Material</b-button>
+                <b-button size="mod" variant="success">Adicionar Material</b-button>
             </b-form>
         </b-col>
         <p id="valor1"><b>Custo: R$XX,XX</b></p> 
@@ -71,7 +71,7 @@ p{
     margin-top: 30px;
 }
 
-.btn-sm{
+.btn-mod{
     padding: 0.5rem 5rem;
     font-size: 1.25rem;
     line-height: 1.5;
