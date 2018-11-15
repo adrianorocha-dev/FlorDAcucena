@@ -18,7 +18,7 @@
                                 max-rows="5">
                             </b-form-textarea>
                 </b-form-group>
-                <b-button size="mod" variant="success">Adicionar Material</b-button>
+                <b-button id="botaoAddMaterial">Adicionar Material</b-button>
             </b-form>
         </b-col>
         <p id="valor1"><b>Custo: R$XX,XX</b></p> 
@@ -71,15 +71,13 @@ p{
     margin-top: 30px;
 }
 
-.btn-mod{
+#botaoAddMaterial{
     padding: 0.5rem 5rem;
     font-size: 1.25rem;
     line-height: 1.5;
     border-radius: 25px;
-}
-
-.btn-success{
     background-color: #d9779a;
     border-color: #d9779a;
 }
+
 </style>

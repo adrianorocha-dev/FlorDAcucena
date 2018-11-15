@@ -25,7 +25,6 @@
   padding: 30px;
   background-color: #c79bbf;
   margin-bottom: 60px;
-  align: center;
 }
 
 #nav a {
@@ -34,7 +33,7 @@
   background-color: #d9779a;
   margin: 5px;
   padding: 8px 24px;
-  border-radius: 10px;
+  border-radius: 25px;
 }
 
 </style>

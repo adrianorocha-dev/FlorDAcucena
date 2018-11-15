@@ -1,6 +1,6 @@
 <template>
         <div id="tabela">
-            <b-table :fields="fields" :items="items" bordered=true outlined="true" striped="true" head-variant="light"></b-table>
+            <b-table :fields="fields" :items="items" bordered=true outlined="true" striped="true"></b-table>
         </div>
 </template>
 
