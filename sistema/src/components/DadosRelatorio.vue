@@ -28,18 +28,19 @@
                         placeholder="Valor gasto com água...">
                     </b-form-input>
                 </b-form-group>
+            
 
             <b-form-group id="gastointernet"
                         label="Gastos com internet:"
                         label-class="text-sm-left"
                         vertical>
                     
-                    <b-form-textarea id="internet"
+                    <b-form-input id="internet"
                         placeholder="Valor gasto com internet..."
                         v-model="contaInternet"
                         rows="3"
                         max-rows="3">
-                    </b-form-textarea>
+                    </b-form-input>
         </b-form-group>
 
             <b-form-group id="gastoaluguel"
@@ -54,7 +55,7 @@
             </b-form-input>
         </b-form-group>
             <b-form-group id="gastosextras"
-                        label="Gastos estras:"
+                        label="Gastos extras:"
                         label-class="text-sm-left"
                         vertical>
             <b-form-input id="extra"
