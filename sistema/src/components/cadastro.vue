@@ -1,11 +1,13 @@
-<template id="teste">
+<template>
     <b-container>
-        <b-col md="8" offset-md="2" sm="12" offset-sm="0">
+        <b-col md="7" offset-md="2" sm="12" offset-sm="0">
             <b-form>
                 <b-form-group id="nomeDoPedido"
                         label="Nome do Pedido:"
-                        label-for="PedidoInput"
-                        horizontal>
+                        label-class="text-sm-left"
+                        vertical
+                        >
+                    
                     <b-form-input id="PedidoInput"
                             type="text"
                             required
@@ -16,8 +18,8 @@
 
                 <b-form-group id="nomeCliente"
                         label="Nome do Cliente:"
-                        label-for="nomeclienteInput3"
-                        horizontal>
+                        label-class="text-sm-left"
+                        vertical>
                     <b-form-input id="nomeClienteInput2"
                         type="text"
                         required
@@ -28,8 +30,8 @@
 
             <b-form-group id="descricao"
                         label="Descrição:"
-                        label-for="exampleInput2"
-                        horizontal>
+                        label-class="text-sm-left"
+                        vertical>
                     
                     <b-form-textarea id="textarea1"
                         placeholder="Uma descrição sobre o que o cliente deseja..."
@@ -41,8 +43,8 @@
 
             <b-form-group id="dataDeEntrega"
                         label="Data de Entrega:"
-                        label-for="entregaInput4"
-                        horizontal>
+                        label-class="text-sm-left"
+                        vertical>
             <b-form-input id="entregaInput4"
                         type="date"
                         required
@@ -53,8 +55,8 @@
 
             <b-form-group id="tempoDeProducao"
                         label="Tempo mínimo de produção:"
-                        label-for="tempoProducaoInput2"
-                        horizontal>
+                        label-class="text-sm-left"
+                        vertical>
             <b-form-input id="tempoProducaoInput2"
                         type="number"
                         required
@@ -67,10 +69,10 @@
 
 	<b-form-group id="materiais"
                         label="Materiais:"
-                        label-for="exampleInput3"
-                        horizontal>
+                        label-class="text-sm-left"
+                        vertical>
                     
-                    <b-form-textarea id="textarea1"
+                    <b-form-textarea id="textarea2"
                         placeholder="Lista de Materiais"
                         v-model="materiais"
                         rows="3"
@@ -78,7 +80,7 @@
                     </b-form-textarea>
         </b-form-group>
 
-        <b-button size="lg" variant="primary" @click="submitPedido()">Cadastrar</b-button>
+        <b-button id="botaoCad" size="lg" variant="primary" @click="submitPedido()">Confirmar</b-button>
 
         </b-form>
         </b-col>
@@ -113,3 +115,20 @@ export default {
     }
 }
 </script>
+
+<style>
+.btn-lg{
+    padding: 0.5rem 17rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    border-radius: 25px;
+}
+.btn-primary{
+    background-color: #d9779a;
+    border-color: #d9779a;
+}
+.btn{
+    font-weight: bold;
+}
+
+</style>
