@@ -1,6 +1,7 @@
 <template>
     <b-container>
-        <b-col md="7" offset-md="2" sm="12" offset-sm="0">
+        
+        <b-col md="8" offset-md="2" sm="12" offset-sm="0">
             <b-form>
                 <b-form-group id="nomeDoPedido"
                         label="Nome do Pedido:"
@@ -118,7 +119,7 @@ export default {
 
 <style>
 .btn-lg{
-    padding: 0.5rem 17rem;
+    padding: 0.5rem 19rem;
     font-size: 1.25rem;
     line-height: 1.5;
     border-radius: 25px;
@@ -128,6 +129,10 @@ export default {
     border-color: #d9779a;
 }
 .btn{
+    font-weight: bold;
+}
+
+.col-form-label{
     font-weight: bold;
 }
 

@@ -24,7 +24,7 @@
 #nav {
   padding: 30px;
   background-color: #c79bbf;
-  margin-bottom: 25px;
+  margin-bottom: 60px;
   align: center;
 }
 
