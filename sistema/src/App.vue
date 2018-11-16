@@ -1,8 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <img class="alerta" src=Imagem/logt.png height="100px" width="200px">
-      <router-link to="/">Home</router-link> 
+      <router-link to="/">Início</router-link>
       <router-link to ="/cadastroCliente">Cadastro de pedido</router-link>  
       <router-link to ="/relatorio">Relatório Financeiro</router-link> 
       <router-link to="/about">Sobre</router-link>
@@ -36,5 +35,9 @@
   padding: 8px 24px;
   border-radius: 25px;
 }
+  .logo {
+    background-image: url("assets/fl.png");
+    color: transparent;
+  }
 
 </style>
