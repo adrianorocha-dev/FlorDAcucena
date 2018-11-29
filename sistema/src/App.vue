@@ -1,10 +1,13 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Início</router-link>
-      <router-link to ="/cadastroCliente">Cadastro de pedido</router-link>  
-      <router-link to ="/relatorio">Relatório Financeiro</router-link> 
-      <router-link to="/about">Sobre</router-link>
+    <div id="nav" class="row justify-contents-start">
+      <div class="col-md-2">
+        <b-img :src="require('./assets/logt.png')" fluid />
+      </div>
+      <div class="nav-links">
+        <router-link class="btn botao" to="/">Pedidos</router-link>
+        <router-link class="btn botao" to ="/relatorio">Relatório</router-link> 
+      </div>
     </div>
     <router-view/>
   </div>
@@ -18,26 +21,21 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background-color: #fbbebe;
-  padding-bottom: 1000px;
+  background-color: #ffffff;
 }
 #nav {
   padding: 30px;
   background-color: #c79bbf;
-  margin-bottom: 60px;
+  margin-bottom: 30px;
 }
 
-#nav a {
-  font-weight: bold;
-  color: white;
-  background-color: #d9779a;
-  margin: 5px;
-  padding: 8px 24px;
-  border-radius: 25px;
+.logo {
+  background-image: url("assets/fl.png");
+  color: transparent;
 }
-  .logo {
-    background-image: url("assets/fl.png");
-    color: transparent;
-  }
+
+.nav-links a {
+  margin-top: 30px;
+}
 
 </style>

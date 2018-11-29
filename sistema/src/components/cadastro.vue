@@ -1,8 +1,7 @@
 <template>
     <b-container>
-        
-        <b-col md="8" offset-md="2" sm="12" offset-sm="0">
-            <b-form>
+        <b-col offset-md="2" md="8" sm="12">
+            <b-form @submit.prevent="submitPedido">
                 <b-form-group id="nomeDoPedido"
                         label="Nome do Pedido:"
                         label-class="text-sm-left"
@@ -40,19 +39,19 @@
                         rows="3"
                         max-rows="3">
                     </b-form-textarea>
-        </b-form-group>
+            </b-form-group>
 
             <b-form-group id="dataDeEntrega"
                         label="Data de Entrega:"
                         label-class="text-sm-left"
                         vertical>
-            <b-form-input id="entregaInput4"
+                <b-form-input id="entregaInput4"
                         type="date"
                         required
                         v-model="dataEntrega"
                         placeholder="">
-            </b-form-input>
-        </b-form-group>
+                </b-form-input>
+            </b-form-group>
 
             <b-form-group id="tempoDeProducao"
                         label="Tempo Mínimo de Produção:"
@@ -64,9 +63,9 @@
                         v-model="tempoProducao"
                         placeholder="0">
             </b-form-input>
-        </b-form-group>
+            </b-form-group>
 
-        <b-form-group id="valorProd"
+            <!-- <b-form-group id="valorProd"
                         label="Valor Estimado de Produção:"
                         label-class="text-sm-left"
                         vertical>
@@ -76,25 +75,39 @@
                         v-model="valorProd"
                         placeholder="Valor Estimado de Produção">
                     </b-form-input>
-        </b-form-group>
+            </b-form-group> -->
 
-	<b-form-group id="materiais"
-                        label="Materiais:"
-                        label-class="text-sm-left"
-                        vertical>
-                    
-                    <b-form-textarea id="textarea2"
-                        placeholder="Lista de Materiais"
-                        v-model="materiais"
-                        rows="3"
-                        max-rows="3">
-                    </b-form-textarea>
-        </b-form-group>
+            <b-form-group id="materiais"
+                            label="Materiais:"
+                            label-class="text-sm-left"
+                            vertical>
+                        
+                        <div class="text-left">
+                            <ul>
+                                <li v-for="material in materiais">
+                                    {{ material.nome }}: R$ {{ parseFloat(material.preco).toFixed(2) }}
+                                </li>
+                            </ul>
+                        </div>
 
-        <b-button id="botaoCad" @click="submitPedido()">Confirmar</b-button>
+                        <div class="col-md-3">
+                            <b-btn class="botao botao-sm" v-b-modal.materialModal>Adicionar Material</b-btn>
+                        </div>
+            </b-form-group>
 
-        </b-form>
+            <b-button class="botao" type="submit">Confirmar</b-button>
+
+            </b-form>
         </b-col>
+
+        <b-modal id="materialModal" ref="modal" title="Cadastrar Material" @ok="handleOK" @shown="clearModal">
+            <form @submit.stop.prevent="adicionarMaterial">
+                <label for="nome">Nome:</label>
+                <b-form-input id="nome" type="text" v-model="nomeMaterial" />
+                <label for="preco">Preço (R$):</label>
+                <b-form-input id="preco" type="number" step="0.01" min="0" v-model="precoMaterial" />
+            </form>
+        </b-modal>
     </b-container>
 </template>
 
@@ -109,10 +122,32 @@ export default {
             nomeCliente: '',
             descricao: '',
             dataEntrega: '',
-            tempoProducao: 0
+            tempoProducao: 0,
+            materiais: [],
+
+            nomeMaterial: '',
+            precoMaterial: 0,
         }
     },
     methods: {
+        adicionarMaterial() {
+            this.materiais.push({ nome: this.nomeMaterial, preco: this.precoMaterial });
+            this.clearModal();
+            this.$refs.modal.hide();
+        },
+        clearModal() {
+            this.nomeMaterial = '';
+            this.precoMaterial = '';
+        },
+        handleOK(evt) {
+            evt.preventDefault();
+
+            if (!this.nomeMaterial || !this.precoMaterial) {
+                alert('Preencha os campos!');
+            } else {
+                this.adicionarMaterial();
+            }
+        },
         submitPedido() {
             pedidosRef.push({
                 nomePedido: this.nomePedido,
@@ -120,24 +155,16 @@ export default {
                 descricao: this.descricao,
                 dataEntrega: this.dataEntrega,
                 tempoProducao: this.tempoProducao,
-                listaMateriais: []
-            })
+                materiais: this.materiais
+            });
+
+
         }
     }
 }
 </script>
 
 <style>
-
-#botaoCad{
-    font-weight: bold;
-    padding: 0.5rem 19rem;
-    font-size: 1.25rem;
-    line-height: 1.5;
-    border-radius: 25px;
-    background-color: #d9779a;
-    border-color: #d9779a;
-}
 
 .col-form-label{
     font-weight: bold;
