@@ -4,7 +4,7 @@
       <div class="col-md-2">
         <b-img :src="require('./assets/logt.png')" fluid />
       </div>
-      <div class="nav-links">
+      <div class="nav-links" v-if="user.currentUser">
         <router-link class="btn botao" to="/">Pedidos</router-link>
         <router-link class="btn botao" to ="/relatorio">Relatório</router-link> 
       </div>
@@ -12,6 +12,20 @@
     <router-view/>
   </div>
 </template>
+
+<script>
+import { auth } from './firebase'
+
+export default {
+  name: 'APPHome',
+  data() {
+    return {
+      user: auth
+    }
+  }
+}
+</script>
+
 
 <style>
 

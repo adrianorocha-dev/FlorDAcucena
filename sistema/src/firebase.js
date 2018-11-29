@@ -11,3 +11,4 @@ const app = initializeApp({
 
 export const db = app.database()
 export const pedidosRef = db.ref('pedidos')
+export const auth = app.auth()
