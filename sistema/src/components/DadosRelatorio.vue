@@ -2,7 +2,7 @@
     <b-container>
         <title>Gastos fixos:</title>
         <b-col md="8" offset-md="2" sm="12" offset-sm="0">
-            <b-form @submit.prevent="submitGastos">
+            <b-form id="dadosRelatorio" @submit.prevent="submitGastos">
                 <b-form-group id="gastosLuz"
                         label="Gastos com energia:"
                         label-class="text-sm-left"
@@ -104,6 +104,7 @@ export default {
             })
 
             console.log('Atualizado')
+            this.$router.push('/relatorio');
         },
         cancelar() {
             this.$router.push('/relatorio');

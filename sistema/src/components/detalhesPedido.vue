@@ -16,14 +16,14 @@
 
             <p v-else>Nenhum material</p>
 
-            <b-button v-b-modal.materialModal class="botao">Adicionar</b-button>
+            <b-button v-b-modal.materialModal id="adicionaMaterial" class="botao">Adicionar</b-button>
 
             <div class="row justify-content-around">
                 <p><b>Custo: R$ {{ custo }}</b></p> 
                 <p><b>Valor Sugerido: R$ {{ preco }}</b></p>
             </div>
             <div class="row justify-content-center">
-                <b-btn class="botao" @click="finalizarPedido()">Finalizar Pedido</b-btn>
+                <b-btn id="finalizarPedido" class="botao" @click="finalizarPedido()">Finalizar Pedido</b-btn>
             </div>
 
             <b-modal id="materialModal" ref="modal" title="Cadastrar Material" @ok="handleOK" @shown="clearModal">
@@ -44,8 +44,6 @@
 
 <script>
 import { pedidosRef, db } from '../firebase';
-import { functions } from 'firebase';
-import { format } from 'util';
 
 pedidosRef.orderByKey()
 
@@ -89,24 +87,22 @@ export default {
                 this.adicionarMaterial();
             }
         },
-        updatePedido() {
+        loadFirebase(callback) {
+            var key = this.key;
             var pedido;
-            pedidosRef.child(this.key).on('value', function(snapshot) {
+            pedidosRef.child(key).on('value', function(snapshot) {
                 pedido = snapshot.val();
-            });
-
-            var materiais = []
-
-            pedidosRef.child(this.key).child('materiais').once('value', function(snapshot) {
-
-                snapshot.forEach(function(childSnapshot) {
-                    materiais.push({ val: childSnapshot.val(), key: childSnapshot.key });
+                
+                var materiais = [];
+                pedidosRef.child(key).child('materiais').once('value', function(snapshot) {
+                    snapshot.forEach(function(childSnapshot) {
+                        materiais.push({ val: childSnapshot.val(), key: childSnapshot.key });
+                    });
+                    callback(pedido, materiais);
                 });
-
             });
-            
-            console.log(materiais);
-
+        },
+        updatePedido(pedido, materiais) {
             this.pedido = pedido;
             this.materiais = materiais;
 
@@ -154,7 +150,7 @@ export default {
         }
     },
     mounted() {
-        this.updatePedido();
+        this.loadFirebase(this.updatePedido);
     }
 }
 </script>

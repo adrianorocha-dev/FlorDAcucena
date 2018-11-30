@@ -13,8 +13,15 @@ module.exports = {
         .click('button[type=submit]')
         .pause(5000)
         .click('a[id=link0]')
-        .waitForElementVisible('infoPedido', 5000)
-        
+        .waitForElementVisible('#infoPedido', 10000)
+        .click('button[id=adicionaMaterial]')
+        .pause(1000)
+        .setValue('input[id=nome]', 'material test 2')
+        .setValue('input[id=preco]', 25)
+        .click('button[id=submitModal]')
+        .pause(1000)
+        .click('button[id=finalizarPedido]')
+        .pause(10000)
         .end()
     }
   }

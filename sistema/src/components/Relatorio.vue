@@ -1,5 +1,5 @@
 <template>
-    <b-container id="contRel">
+    <b-container id="contRel" v-if="!loading">
         <div class="row justify-content-end">
             <router-link id="linkGeraRel" to="/relatorio/dados" class="botao">⚙️</router-link> 
         </div>
@@ -15,7 +15,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{{ items.fixos.toFixed(2) }}</td>
+                        <td id="custosFixos">{{ items.fixos.toFixed(2) }}</td>
                         <td>{{ items.variaveis.toFixed(2) }}</td>
                         <td>{{ items.total.toFixed(2) }}</td>
                         <td>{{ items.entrada.toFixed(2) }}</td>
@@ -48,7 +48,8 @@ export default {
                 total: 0.0,
                 entrada: 0.0,
                 lucro: 0.0
-            }
+            },
+            loading: true
         }
     },
     methods: {
@@ -87,6 +88,8 @@ export default {
             items.lucro = items.entrada - items.total;
 
             this.items = items;
+
+            this.loading = false;
         }
     },
     mounted() {

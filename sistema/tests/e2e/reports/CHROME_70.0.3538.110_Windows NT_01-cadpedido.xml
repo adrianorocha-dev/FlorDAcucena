@@ -5,9 +5,9 @@
 
   <testsuite name="01-cadpedido"
     errors="0" failures="0" hostname="" id="" package="01-cadpedido" skipped="0"
-    tests="1" time="22.29" timestamp="Fri, 30 Nov 2018 18:49:19 GMT">
+    tests="1" time="22.24" timestamp="Fri, 30 Nov 2018 20:27:19 GMT">
   
-    <testcase name="default e2e tests" classname="01-cadpedido" time="22.29" assertions="3">
+    <testcase name="default e2e tests" classname="01-cadpedido" time="22.24" assertions="3">
 
     
 
