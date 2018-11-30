@@ -1,4 +1,3 @@
-# sistema
 
 ## Project setup
 ```

@@ -5,9 +5,9 @@
 
   <testsuite name="02-editar-materiais"
     errors="0" failures="0" hostname="" id="" package="02-editar-materiais" skipped="0"
-    tests="1" time="24.47" timestamp="Fri, 30 Nov 2018 20:27:42 GMT">
+    tests="1" time="22.41" timestamp="Fri, 30 Nov 2018 23:24:15 GMT">
   
-    <testcase name="default e2e tests" classname="02-editar-materiais" time="24.47" assertions="3">
+    <testcase name="default e2e tests" classname="02-editar-materiais" time="22.41" assertions="3">
 
     
 

@@ -101,9 +101,7 @@ export default {
                 agua: this.contaAgua,
                 internet: this.contaInternet,
                 aluguel: this.contaAluguel
-            })
-
-            console.log('Atualizado')
+            });
             this.$router.push('/relatorio');
         },
         cancelar() {

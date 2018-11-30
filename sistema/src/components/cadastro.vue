@@ -72,7 +72,7 @@
                         
                         <div class="text-left">
                             <ul>
-                                <li v-for="material in materiais">
+                                <li v-for="material in materiais" v-bind:key="material['.key']">
                                     {{ material.nome }}: R$ {{ parseFloat(material.preco).toFixed(2) }}
                                 </li>
                             </ul>

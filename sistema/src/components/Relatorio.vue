@@ -16,10 +16,10 @@
                 <tbody>
                     <tr>
                         <td id="custosFixos">{{ items.fixos.toFixed(2) }}</td>
-                        <td>{{ items.variaveis.toFixed(2) }}</td>
-                        <td>{{ items.total.toFixed(2) }}</td>
-                        <td>{{ items.entrada.toFixed(2) }}</td>
-                        <td>{{ items.lucro.toFixed(2) }}</td>
+                        <td>R$ {{ items.variaveis.toFixed(2) }}</td>
+                        <td>R$ {{ items.total.toFixed(2) }}</td>
+                        <td>R$ {{ items.entrada.toFixed(2) }}</td>
+                        <td :class="(items.lucro < 0) ? ('text-danger') : ('') ">R$ {{ items.lucro.toFixed(2) }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -30,6 +30,7 @@
 
 <script>
 import { pedidosRef, db } from '../firebase'
+import { isArray } from 'util';
 
 export default {
     name: 'ListarPedidos',
@@ -68,24 +69,25 @@ export default {
 
                 pedidosRef.once('value', function(snapshot) {
                     snapshot.forEach(function(pedidoSnap) {
-                        var pedido = pedidoSnap.val();
-                        if (pedido.materiais) {
-                            pedido.materiais.forEach(value => {
-                                items.variaveis += parseFloat(value.preco)
-                            })
-                        }
-                    })
-
-                    callback(items);
+                        var ped = pedidoSnap.val();
+                        pedidosRef.child(pedidoSnap.key + '/materiais').once('value', function(materialSnap) {
+                            materialSnap.forEach(material => {
+                                var mat = material.val()
+                                console.log(mat)
+                                items.variaveis += parseFloat(mat.preco)
+                            });
+                            callback(items);
+                        });
+                    });
                 });
             });
         },
         updateCalculo(items) {
 
             items.total = items.variaveis + items.fixos;
-            items.entrada = items.total * 1.2;
+            items.entrada = items.variaveis * 1.2;
 
-            items.lucro = items.entrada - items.total;
+            items.lucro = items.entrada - items.variaveis;
 
             this.items = items;
 
