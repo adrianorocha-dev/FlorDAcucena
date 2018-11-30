@@ -51,8 +51,8 @@ npm run test:e2e
 [VueFire](https://github.com/vuejs/vuefire) - Framework que integra VueJS com o Firebase
 
 ## Autores
-* **Açucena Rodrigues dos Santos Soares - [acucenarodrigues1998](https://github.com/acucenarodrigues1998)
-* **Adriano de Oliveira Leal Rocha - [SkyLkr](https://github.com/SkyLkr)
-* **Hidelgardo Ramirez Granja Barreto - [hidelr090](https://github.com/hidelr090)
-* **Marcos Paulo Borges das Chagas - [MarcosPaulomk42](https://github.com/MarcosPaulomk42)
-* **Mylena Caetano de Oliveira - [TiaMyllena](https://github.com/TiaMyllena)
+* **Açucena Rodrigues dos Santos Soares** - [acucenarodrigues1998](https://github.com/acucenarodrigues1998)
+* **Adriano de Oliveira Leal Rocha** - [SkyLkr](https://github.com/SkyLkr)
+* **Hidelgardo Ramirez Granja Barreto** - [hidelr090](https://github.com/hidelr090)
+* **Marcos Paulo Borges das Chagas** - [MarcosPaulomk42](https://github.com/MarcosPaulomk42)
+* **Mylena Caetano de Oliveira** - [TiaMyllena](https://github.com/TiaMyllena)
