@@ -7,7 +7,11 @@
       <div class="nav-links" v-if="user.currentUser">
         <router-link class="btn botao" to="/">Pedidos</router-link>
         <router-link class="btn botao" to ="/relatorio">Relatório</router-link> 
+        
       </div>
+      <!-- <div class="justify-self-end">
+        <b-button class="botao">Sair</b-button>
+      </div> -->
     </div>
     <router-view/>
   </div>

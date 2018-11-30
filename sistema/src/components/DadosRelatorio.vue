@@ -2,7 +2,7 @@
     <b-container>
         <title>Gastos fixos:</title>
         <b-col md="8" offset-md="2" sm="12" offset-sm="0">
-            <b-form>
+            <b-form @submit.prevent="submitGastos">
                 <b-form-group id="gastosLuz"
                         label="Gastos com energia:"
                         label-class="text-sm-left"
@@ -10,10 +10,10 @@
                         >
                     
                     <b-form-input id="luz"
-                            type="double"
+                            type="number"
                             required
-                            v-model="contaLuz"
-                            placeholder="Valor gasto com energia...">
+                            step="0.01"
+                            v-model="contaLuz">
                     </b-form-input>
                 </b-form-group>
 
@@ -22,10 +22,10 @@
                         label-class="text-sm-left"
                         vertical>
                     <b-form-input id="agua"
-                        type="double"
+                        type="number"
                         required
-                        v-model="contaAgua"
-                        placeholder="Valor gasto com água...">
+                        step="0.01"
+                        v-model="contaAgua">
                     </b-form-input>
                 </b-form-group>
             
@@ -36,10 +36,9 @@
                         vertical>
                     
                     <b-form-input id="internet"
-                        placeholder="Valor gasto com internet..."
+                        type="number"
                         v-model="contaInternet"
-                        rows="3"
-                        max-rows="3">
+                        step="0.01">
                     </b-form-input>
         </b-form-group>
 
@@ -48,27 +47,29 @@
                         label-class="text-sm-left"
                         vertical>
             <b-form-input id="aluguel"
-                        type="date"
+                        type="number"
                         required
+                        step="0.01"
                         v-model="contaAluguel"
                         placeholder="">
             </b-form-input>
         </b-form-group>
-            <b-form-group id="gastosextras"
+        <!-- <b-form-group id="gastosextras"
                         label="Gastos extras:"
                         label-class="text-sm-left"
                         vertical>
             <b-form-input id="extra"
-                        type="double"
+                        type="number"
+                        step="0.01"
                         required
-                        v-model="gastoextra"
-                        placeholder="0">
+                        v-model="gastoextra">
             </b-form-input>
 
 
-        </b-form-group>
+        </b-form-group> -->
 
-        <b-button id="botaoCad" @click="submitGastos()">Confirmar</b-button>
+        <b-button class="botao" type="submit">Salvar</b-button>
+        <b-button class="botao" @click="cancelar()">Cancelar</b-button>
 
         </b-form>
         </b-col>
@@ -76,44 +77,42 @@
 </template>
 
 <script>
-import {gastosRef} from '../firebase'
+import {db} from '../firebase'
+
+var gastos = '';
+db.ref('gastos').once('value').then(snapshot => {
+    gastos = snapshot.val()
+})
 
 export default {
     name: 'Gastos',
     data() {
         return {
-            contaLuz: 0,
-            contaAgua: 0,
-            contaInternet: 0,
-            contaAluguel: 0,
-            gastoextra: 0
+            contaLuz: gastos.contaLuz,
+            contaAgua: gastos.contaAgua,
+            contaInternet: gastos.contaInternet,
+            contaAluguel: gastos.contaAluguel
         }
     },
     methods: {
         submitGastos() {
-            gastosRef.push({
+            db.ref('gastos').set({
                 luz: this.contaLuz,
                 agua: this.contaAgua,
                 internet: this.contaInternet,
-                aluguel: this.contaAluguel,
-                extra: this.gastoextra,
+                aluguel: this.contaAluguel
             })
+
+            console.log('Atualizado')
+        },
+        cancelar() {
+            this.$router.push('/relatorio');
         }
     }
 }
 </script>
 
 <style>
-
-#botaoCad{
-    font-weight: bold;
-    padding: 0.5rem 19rem;
-    font-size: 1.25rem;
-    line-height: 1.5;
-    border-radius: 25px;
-    background-color: #d9779a;
-    border-color: #d9779a;
-}
 
 .col-form-label{
     font-weight: bold;

@@ -9,13 +9,16 @@ import './assets/css/style.css'
 import './firebase'
 import VueFire from 'vuefire'
 
+var { app } = require('./firebase');
+
 Vue.config.productionTip = false
 
 Vue.use(BootstrapVue)
 Vue.use(VueFire)
+Vue.use(app)
 
 new Vue({
   router,
   store,
-  render: h => h(App)
+  render: h => h(App),
 }).$mount('#app')

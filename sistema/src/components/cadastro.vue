@@ -1,14 +1,14 @@
 <template>
     <b-container>
         <b-col offset-md="2" md="8" sm="12">
-            <b-form @submit.prevent="submitPedido">
+            <b-form id="formCadastro" @submit.prevent="submitPedido">
                 <b-form-group id="nomeDoPedido"
                         label="Nome do Pedido:"
                         label-class="text-sm-left"
                         vertical
                         >
                     
-                    <b-form-input id="PedidoInput"
+                    <b-form-input id="nomeDoPedido"
                             type="text"
                             required
                             v-model="nomePedido"
@@ -20,7 +20,7 @@
                         label="Nome do Cliente:"
                         label-class="text-sm-left"
                         vertical>
-                    <b-form-input id="nomeClienteInput2"
+                    <b-form-input id="nomeCliente"
                         type="text"
                         required
                         v-model="nomeCliente"
@@ -33,7 +33,7 @@
                         label-class="text-sm-left"
                         vertical>
                     
-                    <b-form-textarea id="textarea1"
+                    <b-form-textarea id="descricao"
                         placeholder="Uma descrição sobre o que o cliente deseja..."
                         v-model="descricao"
                         rows="3"
@@ -45,7 +45,7 @@
                         label="Data de Entrega:"
                         label-class="text-sm-left"
                         vertical>
-                <b-form-input id="entregaInput4"
+                <b-form-input id="dataDeEntrega"
                         type="date"
                         required
                         v-model="dataEntrega"
@@ -57,25 +57,13 @@
                         label="Tempo Mínimo de Produção:"
                         label-class="text-sm-left"
                         vertical>
-            <b-form-input id="tempoProducaoInput2"
+            <b-form-input id="tempoDeProducao"
                         type="number"
                         required
                         v-model="tempoProducao"
                         placeholder="0">
             </b-form-input>
             </b-form-group>
-
-            <!-- <b-form-group id="valorProd"
-                        label="Valor Estimado de Produção:"
-                        label-class="text-sm-left"
-                        vertical>
-                    <b-form-input id="valorProdInput2"
-                        type="text"
-                        required
-                        v-model="valorProd"
-                        placeholder="Valor Estimado de Produção">
-                    </b-form-input>
-            </b-form-group> -->
 
             <b-form-group id="materiais"
                             label="Materiais:"
@@ -91,11 +79,11 @@
                         </div>
 
                         <div class="col-md-3">
-                            <b-btn class="botao botao-sm" v-b-modal.materialModal>Adicionar Material</b-btn>
+                            <b-btn id="addMaterial" class="botao botao-sm" v-b-modal.materialModal>Adicionar Material</b-btn>
                         </div>
             </b-form-group>
 
-            <b-button class="botao" type="submit">Confirmar</b-button>
+            <b-button id="confirmarCadastro" class="botao" type="submit">Confirmar</b-button>
 
             </b-form>
         </b-col>
@@ -107,6 +95,10 @@
                 <label for="preco">Preço (R$):</label>
                 <b-form-input id="preco" type="number" step="0.01" min="0" v-model="precoMaterial" />
             </form>
+            <div slot="modal-footer">
+                <b-btn id="cancelModal" @click="closeModal" variant="secondary">Cancelar</b-btn>
+                <b-btn id="submitModal" @click="handleOK" variant="primary">OK</b-btn>
+            </div>
         </b-modal>
     </b-container>
 </template>
@@ -135,6 +127,10 @@ export default {
             this.clearModal();
             this.$refs.modal.hide();
         },
+        closeModal() {
+            this.clearModal();
+            this.$refs.modal.hide();
+        },
         clearModal() {
             this.nomeMaterial = '';
             this.precoMaterial = '';
@@ -158,7 +154,7 @@ export default {
                 materiais: this.materiais
             });
 
-
+            this.$router.replace('pedidos');
         }
     }
 }

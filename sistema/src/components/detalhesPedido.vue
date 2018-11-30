@@ -1,6 +1,6 @@
 <template>
     <b-container>
-        <div class="col-md-8 col-sm 12 text-left">
+        <div id="infoPedido" v-if="!loading" class="col-md-8 col-sm 12 text-left">
             <p><strong>Pedido: </strong>{{pedido.nomePedido}} </p>
             <p><b>Cliente: </b>{{pedido.cliente}}</p> 
             <p><b>Descrição: </b>{{pedido.descricao}}</p>
@@ -23,7 +23,7 @@
                 <p><b>Valor Sugerido: R$ {{ preco }}</b></p>
             </div>
             <div class="row justify-content-center">
-                <b-btn class="botao">Finalizar Pedido</b-btn>
+                <b-btn class="botao" @click="finalizarPedido()">Finalizar Pedido</b-btn>
             </div>
 
             <b-modal id="materialModal" ref="modal" title="Cadastrar Material" @ok="handleOK" @shown="clearModal">
@@ -33,13 +33,17 @@
                     <label for="preco">Preço (R$):</label>
                     <b-form-input id="preco" type="number" step="0.01" min="0" v-model="precoMaterial" />
                 </form>
+                <div slot="modal-footer">
+                    <b-btn id="cancelModal" @click="closeModal" variant="secondary">Cancelar</b-btn>
+                    <b-btn id="submitModal" @click="handleOK" variant="primary">OK</b-btn>
+                </div>
             </b-modal>
         </div>
     </b-container>
 </template>
 
 <script>
-import {pedidosRef} from '../firebase'
+import { pedidosRef, db } from '../firebase';
 import { functions } from 'firebase';
 import { format } from 'util';
 
@@ -54,6 +58,7 @@ export default {
             materiais: [],
             custo: 0,
             preco: 0,
+            loading: true,
 
             /* modal */
             nomeMaterial: '',
@@ -66,6 +71,10 @@ export default {
             this.clearModal();
             this.$refs.modal.hide();
             this.updatePedido();
+        },
+        closeModal() {
+            this.clearModal();
+            this.$refs.modal.hide();
         },
         clearModal() {
             this.nomeMaterial = '';
@@ -101,16 +110,47 @@ export default {
             this.pedido = pedido;
             this.materiais = materiais;
 
-            // var custo = parseFloat(pedido.valorMaoDeObra);
             var custo = 0;
-
             for (var i = 0; i < materiais.length; i++) {
                 custo += parseFloat(materiais[i].val.preco);
             }
 
             this.custo = custo.toFixed(2);
 
-            this.preco = (custo * 1.2).toFixed(2);    
+            this.preco = (custo * 1.2).toFixed(2);
+            
+            this.loading = false;
+        },
+        finalizarPedido() {
+            var mat = []
+            for (var i = 0; i < this.materiais.length; i++) {
+                mat.push(this.materiais[i].val)
+            }
+
+            var router = this.$router;
+
+            pedidosRef.child(this.key).set({
+                cliente: this.pedido.cliente,
+                dataEntrega: this.pedido.dataEntrega,
+                descricao: this.pedido.descricao,
+                materiais: mat,
+                nomePedido: this.pedido.nomePedido,
+                tempoProducao: this.pedido.tempoProducao,
+                finalizado: true
+            }, function(error) {
+                if (error) {
+                    console.error('Erro atualização')
+                } else {
+                    console.log('Atualidado')
+                    router.push('/pedidos')
+                }
+            });
+
+
+            // var update = {}
+
+            // update['/pedidos' + this.key] = pedidoAtual;
+            // db.ref().update(update);
         }
     },
     mounted() {

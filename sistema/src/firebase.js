@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase'
 
-const app = initializeApp({
+export const app = initializeApp({
     apiKey: "AIzaSyCVNzTtr-Py0lmb25IYX_T6OlEERSVjocw",
     authDomain: "flordacucena-58ae1.firebaseapp.com",
     databaseURL: "https://flordacucena-58ae1.firebaseio.com",
